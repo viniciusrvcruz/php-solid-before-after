@@ -1,0 +1,1 @@
+docker run --rm php-solid php after/index.php
