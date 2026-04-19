@@ -1,0 +1,6 @@
+services:
+  php-solid:
+    image: composer:latest
+    volumes:
+      - ./:/app
+    working_dir: /app

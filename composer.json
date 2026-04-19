@@ -1,0 +1,14 @@
+{
+    "name": "vinicius-cruz/php-solid",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vinicius Cruz"
+        }
+    ],
+    "require": {}
+}

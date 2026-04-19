@@ -1,1 +1,1 @@
-docker run --rm php-solid php before/index.php
+docker compose run --rm php-solid php src/Before/index.php
