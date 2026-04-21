@@ -16,7 +16,6 @@ use App\After\Services\ReservationPricingService;
 use App\After\Services\ReservationService;
 use App\After\Services\RoomAvailabilityService;
 use App\After\Validators\ReservationValidator;
-use Throwable;
 
 echo "=== Depois (refatoração SOLID) ===\n\n";
 
@@ -30,42 +29,14 @@ $reservationService = new ReservationService(
     new TextReceiptGenerator(),
 );
 
+$reservation = new Reservation(
+    user: 'João',
+    room: 'Sala 101',
+    roomType: RoomTypeEnum::LABORATORY,
+    hours: 2,
+    projector: true,
+);
+
 $payment = new PixPayment();
 
-$reserve = static function (
-    string $user,
-    string $room,
-    string $roomType,
-    int $hours,
-    bool $projector,
-) use ($reservationService, $payment): void {
-    $type = strtolower($roomType) === 'laboratory'
-        ? RoomTypeEnum::LABORATORY
-        : RoomTypeEnum::STANDARD;
-
-    $reservation = new Reservation(
-        user: $user,
-        room: $room,
-        roomType: $type,
-        hours: $hours,
-        projector: $projector,
-    );
-
-    try {
-        $reservationService->reserve($reservation, $payment);
-    } catch (Throwable $e) {
-        echo $e->getMessage() . "\n";
-    }
-};
-
-echo "--- Cenário 1: reserva válida ---\n";
-$reserve('Maria', 'Sala 101', 'sala', 2, true);
-echo "\n";
-
-echo "--- Cenário 2: usuário inválido ---\n";
-$reserve('   ', 'Sala 102', 'sala', 1, false);
-echo "\n";
-
-echo "--- Cenário 3: sala já reservada (Sala 101) ---\n";
-$reserve('João', 'Sala 101', 'laboratory', 1, false);
-echo "\n";
+$reservationService->reserve($reservation, $payment);
