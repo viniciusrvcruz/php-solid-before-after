@@ -32,7 +32,7 @@ $reservationService = new ReservationService(
 $reservation = new Reservation(
     user: 'João',
     room: 'Sala 101',
-    roomType: RoomTypeEnum::LABORATORY,
+    roomType: RoomTypeEnum::STANDARD,
     hours: 2,
     projector: true,
 );

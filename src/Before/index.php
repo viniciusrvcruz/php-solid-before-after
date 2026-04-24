@@ -12,4 +12,4 @@ echo "=== Antes (código legado, violações de SOLID) ===\n\n";
 
 $service = new LegacyRoomReservationService();
 
-$service->reserve('João', 'Sala 101', 'sala', 2, true, 'pix');
+$service->reserve('João', 'Sala 101', 'standard', 2, true, 'pix');
